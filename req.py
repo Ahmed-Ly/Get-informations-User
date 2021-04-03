@@ -71,14 +71,6 @@ start =True
 
 user_data = requests.get(url).json()
 
-# print(user_data)
-
-# print(len(user_data))
-
-
-
-# print("" + user_data['login'] + "")
-
 
 def nameuser():
     return user_data['login']
