@@ -27,9 +27,6 @@ def colorText(text):
 time.sleep(3)
 
 msg = '''
-
-
-
 [[red]]
  .----------------.  .----------------.  .----------------.  .----------------.  .----------------.   .----------------.  .----------------. 
 | .--------------. || .--------------. || .--------------. || .--------------. || .--------------. | | .--------------. || .--------------. |
@@ -65,12 +62,18 @@ username = input(colorText('[[red]]enter [[yellow]]username :'))
 Texts = None
 
 url = f"https://api.github.com/users/{username}"
+link = f"https://api.github.com/users/{username}/repos"
+subscriptions = f"https://api.github.com/users/{username}/subscriptions"
 
 
 start =True 
 
 user_data = requests.get(url).json()
 
+user_data_more = requests.get(link).json()
+
+
+user_subscriptions = requests.get(subscriptions).json()
 
 def nameuser():
     return user_data['login']
@@ -110,41 +113,62 @@ def avatar_urluser():
 
 
 
+def getFullnameRepo():
+  for x in range(1,len(user_data_more)):
+         print(user_data_more[x]['full_name'])
 
 
-if start == True:
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'following':
-   f =   userfollowing()
-   print(f)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'followers':
-   fr =   userfollowers()
-   print(fr)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'iduser':
-   q =   iduser()
-   print(q)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'created_at':
-   we =   created_at()
-   print(we)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'locationuser':
-   wee =   locationuser()
-   print(wee)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'email':
-   qwer =  emailuser()
-   print(qwer)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'nameuser':
-   wef =  nameuser()
-   print(wef)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
-if Texts == 'avatar_url':
-   fdss =  avatar_urluser()
-   print(fdss)
-   Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+def getallinfosubscriptions():
+ for y in range(1,len(user_subscriptions)):
+         print(user_subscriptions[y]['full_name'],'<===============>',user_subscriptions[y]['url'])
+
+while True:
+  if start == True:
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'following':
+     f =   userfollowing()
+     print(f)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'followers':
+     fr =   userfollowers()
+     print(fr)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'iduser':
+     q =   iduser()
+     print(q)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'created_at':
+     we =   created_at()
+     print(we)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'locationuser':
+     wee =   locationuser()
+     print(wee)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'email':
+     qwer =  emailuser()
+     print(qwer)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'nameuser':
+     wef =  nameuser()
+     print(wef)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'avatar_url':
+     fdss =  avatar_urluser()
+     print(fdss)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'avatar_url':
+     fdss =  avatar_urluser()
+     print(fdss)
+     Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'repo':
+       repi = getFullnameRepo()
+       Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+  if Texts == 'subscriptions':
+       repi = getallinfosubscriptions()
+       Texts = input(colorText("[[red]]Enter Information [[magenta]]you [[green]]need [[black]]about user : "))
+
+
+
 
 
